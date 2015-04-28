@@ -150,7 +150,7 @@ coin volatility.
 
 Coin demand is a quantity of \emph{purchasing power} rather than a
 quantity of coin. That is,
-\begin{equation}
+\begin{equation}\label{eqn:coin-demand}
 CD = P\times Q
 \end{equation}
 , where P is a coin's purchasing power (coin price of a basket of
@@ -411,56 +411,82 @@ restrictive strategy that defines $P_{i}$ in terms of information that
 is purely \emph{endogenous} to the network itself.
 
 Without specifying what types of values $P_{i}$ could be, we've sort
-of assumed the \emph{exogenous} design in this note. That is, $P_{i}$
-would be defined as some specific price index. What that index is
-would be specified at the time of the scheme's launch, and the
-motivation would be some price index that we want to make coins stable
-\emph{with respect to}. For example, maybe the USD price of coin,
-deflated by the CPI, for ``Zero-inflation Coin''. 
+of assumed the \emph{exogenous} design in this note. The idea here is
+that, $P_{i}$ would be defined as some specific price index,
+\begin{equation}
+P_{i} = \frac{p^{1}_{1}w^{1} + \dots + p^{n}_{1}w^{n}}{p^{1}_{i}w^{1} + \dots + p^{n}_{i}w^{n}}
+\end{equation}
+, where $p^{j}$ is the coin market price one of $n$ specific
+goods/assets and $w^{j}$ is its index weight. For example, the index
+might consist of the coin prices of a basket of commodities (crude
+oil, wheat, copper, etc). The goal here is to make the value of coin
+stable \emph{with respect to} some pre-defined target level of
+$P_{i}$, e.g., $P_{i} \approx 1$ for all times $i$.
 
-\subsection*{Schelling Points}
-The best strategy I am aware of for solving this problem for exogenous
-designs is a schelling point scheme. The goal is to have a mechanism
-to incentivise people to submit accurate estimates of $P_{i}$ to the
-network. 
+\subsection*{Exogenous models}
+One strategy for solving this problem for exogenous designs is a
+``Schelling point'' scheme. The goal is to have a mechanism to
+incentivise people to submit accurate estimates of $P_{i}$ to the
+network.
 
-One mechanism for doing this is to have a periodic competition, where
-people submit encrypted estimates of $P_{i}$ to the network, along
-with $F$ coins, the price for participating in this mechanism. The
-incentive for participating is that after all the submissions are
-collected and decrypted, everyone who submitted a value inside the
-inner two quartiles of the estimate distribution wins $2\times F$,
-whilst all those with estimates in the outside two quartiles lose
-$F$. So the incentive is to bet what you think the consensus will be. 
+One mechanism for doing this is to have a periodic \emph{Shelling
+  competition}, where people submit encrypted estimates of $P_{i}$ to
+the network, along with $F$ coins, the price for participating in this
+mechanism. The incentive for participating is that after all the
+submissions are collected and decrypted, everyone who submitted a
+value inside the inner two quartiles of the estimate distribution wins
+$2\times F$, whilst all those with estimates in the outside two
+quartiles lose $F$. So the incentive is to bet what you think the
+consensus will be.
 
 The idea here is that the ``rational'' expectation of what consensus
 will be is whatever is common knowledge of the \emph{salient}
 answer. A Schelling point is a qualitative equilibrium solution based
-on common knowledge of salience and in our context, the hope is that
+on common knowledge of salience. In our context, the hope is that
 \emph{truth} is the Schelling point.
 
 Various suggestions along these lines have been suggested before by
 Sams\cite{sams}, Buterin\cite{buterin}, Ametrano\cite{ametrano} and
-probably others. I'm still uneasy about the robustness of the
-truth-as-Schelling-point assumption, especially given the potentially
-complex interaction of incentives outside and inside the schelling
-point mechanism.
+probably others. I'm uneasy about the robustness of the
+truth-as-Schelling-point assumption. For example, what if the majority
+of participants in the competition would prefer the consensus to be
+different from the truth, and this was common knowledge? Why would
+truth be the Schelling point in this scenario?
 
-But perhaps more structure can be placed on the Schelling scheme by
-restricting participation to share holders. If my primary empirical
-conjecture that $CD_{T}$ is inversely related to coin price
-volatility, maybe it can be shown that the price of shares as defined
-by equation \ref{eqn:npv} is maximised by whatever set of estimated
-coin prices $P_{i}$ most accurately represents the basket of
-goods/assets that coin holders want coin to be stable against. In
-other words, maybe by restricting participation in the Schelling
-mechanism to share holders, the union of incentives of share holder
-and Schelling game participant are more likely to bring about a
-process where the Schelling point is truth. And $P_{i}$ will then be
-the coin price of a representative basket of goods that coin holders
-typically use coin to buy, a sort of coin CPI, and it's up to share
-holders to come to consensus (via iterations of the Schelling game) of
-what that coin CPI actually is. 
+We can do better than this by exploiting the incentives of share
+holders. Share holders want to maximize the value of of shares
+$P^{s}$. And there is a compelling argument that the value of shares
+is maximised when the $P_{i}$ communicated to the network is the
+truth. Here is the argument.
+
+First, let's simplify the set-up a bit (hopefully, without loss of
+generality) and say that expected demand growth for coin is $g$, so 
+\begin{equation}
+\Delta_{t} = \Delta_{t-1} (1 + g)
+\end{equation}, 
+where $g < r$. The sum of infinite summation in equation \ref{eqn:npv}
+can then be defined in terms of $g$ and $r$ and the equation reduces
+to:
+\begin{equation}
+P^{s}_{t} = \frac{1}{Q^{s}_{t}}\frac{\Delta_{t}}{r-g}
+\end{equation}.
+
+Now, the question is: if shareholders had the power to represent
+$P_{i}$ to the network, do they have an incentive to be untruthful?
+Let $\rho_{i}$ be the true market value of the coin index and let
+$\epsilon = P_{i} / \rho_{i}$ be the measure of untruthfullness. It
+might be argued that share holders have an incentive to make
+$\epsilon$ large, that is, to exagerate the value of coin in order to
+force the network to bid for more shares and increase the current
+period's coin ``dividend''. 
+
+If we hold $MD$ constant, the first implication of this policy is that
+the value of coin will decline with the size of the error,
+\begin{equation}
+\hat{P}_{t} = P_{t}\frac{1}{\epsilon}
+\end{equation},
+this follows from equations \ref{eqn:coin-demand} and
+\ref{eqn:supply}. 
 
 \subsection*{Endogenous models}
 An entirely different strategy is that which I call an endogenous
