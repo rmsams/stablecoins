@@ -1,4 +1,4 @@
-MAIN = 00-main
+MAIN = paper
 
 default: tex
 

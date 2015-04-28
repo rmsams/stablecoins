@@ -1,9 +1,9 @@
 \documentclass[twocolumn]{article}
 \usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
 \usepackage{float}
 \usepackage{url}
-\usepackage[latin1]{inputenc}
-\usepackage{datetime}
+\usepackage{datetime} % must be loaded after babel
 \usepackage{graphicx}
 \usepackage{epigraph}
 \makeatletter
@@ -12,13 +12,10 @@
 %%%%%%%%%%%%%%%%%%%%%% Title Page %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \onecolumn
-\begin{figure}[b!]
-\centering
-\includegraphics[keepaspectratio, width=0.3\textwidth]{./logo.png}
-\end{figure}
 \title{A Note on Cryptocurrency Stabilisation: Seigniorage Shares}
-\usdate
-\author{Robert Sams\\\texttt{robert@kryptonomic.com}}
+\usdate % month day, year format
+\date{First Version: October 24, 2014\\This Version: \today{}}
+\author{Robert Sams\\\texttt{rs@clearmatics.com}}
 \maketitle
 \begin{abstract}
   Cryptocurrencies like Bitcoin govern the supply of coin through
