@@ -240,6 +240,24 @@ power of a Hayek Money wallet is just as volatile as a Bitcoin wallet
 balance. So the self-defeating dynamic of $CD_{S}$ driving out
 $CD_{T}$ remains.
 
+One attempt to address this problem with Hayek Money is Morini's
+concept of Inv (``investment'') wallets and Sav (''savings'') wallets
+\cite{morini}. In short, the idea is to bifurcate coin supply into two
+different categories. Those coins that are in Sav wallets are
+immunized from any changes in coin supply, and $\Delta_{i}$ is instead
+distributed pro-rata over those coins that are in Inv wallets. Users
+choose how to distribute their coin between these two wallets. 
+
+This gets us closer to a solution. We can now see that a stable
+cryptocurrency requires that some party is willing to assume the risk
+of absorbing negative $\Delta_{i}$ in exchange for the option of
+receiving positive $\Delta_{i}$. But the Inv/Sav wallet solution still
+fails. If there is any predictability in $\Delta_{t+1}$ at time $t$,
+then users will empty their Inv wallets when $E[\Delta_{t+1}]<0$ and
+empty their Sav wallets when $E[\Delta_{t+1}]>0$. The problem with
+this solution is that users have the option of moving coin between the
+two wallets at \emph{parity}.
+
 \section*{Seigniorage Shares}
 The solution to coin distribution offered here is different. I suggest
 that there needs to be two types of coin: coin that acts like money
@@ -550,6 +568,9 @@ Vitalik Buterin, \emph{SchellingCoin: A Minimal-Trust Universal Data Feed (March
 Robert Sams, \emph{What would a trusted data feed look like (February 5,
   2014)[Reply to forum posting]}. Located at
 \url{https://forum.ethereum.org/discussion/31/what-would-a-trusted-data-feed-look-like/p1}
+\bibitem{morini}
+Massimo Morini, \emph{Inv/Sav Wallets and the Role of Financial Intermediaries in a Digital Currency}.
+Located at \url{http://ssrn.com/abstract=2458890}
 \bibitem{szabo}
 Nicholas Szabo, email, September 18, 2014
   \end{thebibliography}
